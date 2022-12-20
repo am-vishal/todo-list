@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="Developer" content="Vishal">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="/css/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+    <!-- Latest compiled and minified CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <title>Task List</title>
+</head>
+
+<body style="background-color: #39b5b9;">
+    <div class="container">
+        <div class="row">
+            <div style="margin-top: 2rem;" class="col s12 m10 offset-m1 l8 offset-l2 xl6 offset-xl3 section">
+                <div class="card" style="border-radius: 12px; background: #c2f3f7;">
+                    <div class="card-content">
+                        <span class="card-title" style="text-align: center; font-size: 2em; font-weight: bold;">Task
+                            List</span>
+                        <form action="/create-task" method="POST" id="task-form">
+                            <div class="input-field">
+                                <input type="text" name="name" id="task" />
+                                <label for="task">New Task</label>
+                            </div>
+                            <div class="div-100">
+                                <div class="select-class border  p-2">
+                                    <label style="margin: 4px;" for="task">Category</label>
+                                    <div>
+                                        <select class="form-select" name="category" aria-label="Default select example">
+                                            <option name="Personal" value="Personal" selected>Personal</option>
+                                            <option name="Work" value="Work">Work</option>
+                                            <option name="Important" value="Important">Important</option>
+                                            <option name="Others" value="Others">Others</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="select-class border  p-2">
+                                    <label for="task" style="margin: 4px;">Due Date</label>
+                                    <input type="date" name="date" id="date">
+                                </div>
+                            </div>
+                            <button class="btn waves-effect waves-light border border-secondary mt-4" type="submit"
+                                name="action">
+                                Add Task <i class="material-icons right">send</i>
+                            </button>
+                        </form>
+                    </div>
+                    <span style="margin-left:3em ;">TASKS LISTS</span>
+                    <% for (let i of contactList){ %>
+                        <ul class="collection">
+                            <li class="collection-item">
+                                <div class="d-flex justify-content-between">
+                                    <%= i.name%>
+                                        <span class="d-flex justify-content-center bg-primary p-2"
+                                            style="transform: translateY(10px);">
+                                            <%= i.category%>
+                                        </span>
+                                        <a href="/delete-task/?id=<%= i._id %> "
+                                            style="cursor: pointer; color: rgb(224, 26, 79);"
+                                            class="delete-item secondary-content">
+                                            <i style="transform: translateY(10px);" class="material-icons">delete</i>
+                                        </a>
+                                </div>
+                                <i class="fa-solid fa-phone pt-2">
+                                    <label style="display: flex !important;" class="text-center">
+                                        <%= i.date%>
+                                    </label>
+                                </i>
+                            </li>
+                        </ul>
+                        <%}%>
+                            <div class="card-action">
+                                <a href="/" class="clear-btn btn color-light"
+                                    style="color: #fff; background-color: #244054;">Clear Task
+                                </a>
+                            </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
